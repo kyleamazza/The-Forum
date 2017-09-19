@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FinalProjectKyle</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <div class="container">
+  	<% if !flash.empty? %>
+	  	<% flash.each do |key, value| %>
+	  	<% end %>
+	<% end %>
+	<% if !session[:user].nil? and !session[:user]["id"].nil?%>
+  		<%= link_to session[:user]["username"], user_path(session[:user]["id"]) %>
+  		<%= session[:user]["first_name"] %>
+  		<%= form_for :user, :url => "/clear" do |f| %>
+			<%= f.submit "Logout" %>
+		<% end %>
+	<% end %>
+
+    <%= yield %>
+  </body>
+</html>

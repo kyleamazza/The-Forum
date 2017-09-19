@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FinalProjectKyle</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+<% if session[:user]["isAdmin"] %>
+  <body>
+  <%= yield %>
+<% else %>
+	<h1>Access Forbidden</h1>
+	<%= link_to "Return to Safety!", posts_path %>
+    <% end %>
+  </body>
+</html>
